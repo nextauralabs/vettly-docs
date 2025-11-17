@@ -1,0 +1,37 @@
+{
+  "name": "vettly-docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Public documentation and component showcase for Vettly content moderation platform",
+  "workspaces": [
+    "packages/*",
+    "examples/*",
+    "docs"
+  ],
+  "scripts": {
+    "dev": "bun run --filter './packages/*' build && bun run --filter './docs' dev",
+    "build": "bun run build:packages && bun run build:docs",
+    "build:packages": "bun run --filter './packages/*' build",
+    "build:docs": "bun run --filter './docs' build",
+    "preview": "bun run --filter './docs' preview",
+    "test": "vitest run",
+    "lint": "echo 'Linting...'",
+    "publish:packages": "bun run build:packages && bun run publish:all",
+    "publish:all": "bun run --filter './packages/*' publish:npm"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brian-nextaura/vettly-docs.git"
+  },
+  "author": "Next Aura Labs",
+  "license": "MIT"
+}

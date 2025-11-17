@@ -1,0 +1,56 @@
+{
+  "name": "@nextauralabs/vettly-sdk",
+  "version": "0.1.0",
+  "description": "Official TypeScript SDK for Vettly content moderation API",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "test": "bun test",
+    "prepublishOnly": "bun run build",
+    "publish:npm": "npm publish --access public"
+  },
+  "keywords": [
+    "moderation",
+    "content",
+    "safety",
+    "openai",
+    "hive",
+    "perspective",
+    "azure",
+    "vettly",
+    "nextauralabs"
+  ],
+  "author": "Next Aura Labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brian-nextaura/vettly-docs.git",
+    "directory": "packages/sdk"
+  },
+  "homepage": "https://vettly.dev",
+  "bugs": {
+    "url": "https://github.com/brian-nextaura/vettly-docs/issues"
+  },
+  "dependencies": {
+    "@nextauralabs/vettly-shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "tsup": "^8.0.0",
+    "typescript": "^5"
+  }
+}

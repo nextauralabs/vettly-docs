@@ -1,0 +1,68 @@
+{
+  "name": "@nextauralabs/vettly-react",
+  "version": "0.1.0",
+  "description": "React components for Vettly content moderation with real-time feedback",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean --external react --external react-dom && cp src/styles.css dist/styles.css",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch --external react --external react-dom",
+    "test": "bun test",
+    "prepublishOnly": "bun run build",
+    "publish:npm": "npm publish --access public"
+  },
+  "keywords": [
+    "react",
+    "moderation",
+    "content",
+    "safety",
+    "components",
+    "ui",
+    "textarea",
+    "upload",
+    "image",
+    "video",
+    "vettly",
+    "nextauralabs"
+  ],
+  "author": "Next Aura Labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brian-nextaura/vettly-docs.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://vettly.dev",
+  "bugs": {
+    "url": "https://github.com/brian-nextaura/vettly-docs/issues"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@nextauralabs/vettly-sdk": "workspace:*",
+    "@nextauralabs/vettly-shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5"
+  }
+}
