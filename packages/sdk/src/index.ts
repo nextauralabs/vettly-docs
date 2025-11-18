@@ -1,8 +1,8 @@
 /**
- * @vettly/sdk
+ * @nextauralabs/vettly-sdk
  * TypeScript client SDK for unified moderation API
  */
-import type { CheckRequest, CheckResponse, Policy } from '@vettly/shared';
+import type { CheckRequest, CheckResponse, Policy } from '@nextauralabs/vettly-shared';
 
 export interface ModerationClientConfig {
   apiKey: string;

@@ -2,8 +2,8 @@
  * Core moderation hook for real-time content checking
  */
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { ModerationClient } from '@vettly/sdk';
-import type { CheckRequest, CheckResponse } from '@vettly/shared';
+import { ModerationClient } from '@nextauralabs/vettly-sdk';
+import type { CheckRequest, CheckResponse } from '@nextauralabs/vettly-shared';
 
 export interface ModerationResult {
   safe: boolean;
