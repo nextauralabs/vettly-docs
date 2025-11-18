@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd .. && bun install && bun run build:packages && cd docs && bun install && bun run build",
+  "outputDirectory": ".vitepress/dist",
+  "framework": null,
+  "installCommand": "bun --version || npm install -g bun"
+}
