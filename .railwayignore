@@ -1,0 +1,2 @@
+# Ignore individual packages - only deploy the docs site
+packages/
