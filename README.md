@@ -26,11 +26,11 @@ Visit our documentation site: [docs.vettly.dev](https://docs.vettly.dev)
 
 ## 💡 Examples
 
-Check out the [examples](./examples) directory for complete working applications:
+Check out the complete working examples in our documentation:
 
-- **[Social Feed](./examples/social-feed)** - Social media feed with content moderation
-- **[Forum](./examples/forum)** - Discussion board with moderation
-- **[Next.js Starter](./examples/nextjs-starter)** - Next.js app template
+- **[Social Feed](https://docs.vettly.dev/examples/social-feed)** - Social media feed with content moderation
+- **[Forum](https://docs.vettly.dev/examples/forum)** - Discussion board with moderation
+- **[Chat App](https://docs.vettly.dev/examples/chat)** - Real-time chat with safety
 
 ## 🧪 Development
 
@@ -52,5 +52,3 @@ bun test
 
 - [Main Website](https://vettly.dev)
 - [API Documentation](https://docs.vettly.dev)
-- [Dashboard](https://dashboard.vettly.dev)
-- [GitHub](https://github.com/brian-nextaura/vettly-docs)
