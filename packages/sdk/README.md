@@ -26,7 +26,7 @@ const client = new ModerationClient({
 // Check content
 const result = await client.check({
   content: 'Hello world!',
-  policyId: 'moderate' // or 'strict', 'permissive'
+  policyId: 'balanced' // or 'strict', 'permissive'
 })
 
 console.log(result.safe)    // true or false
@@ -50,7 +50,7 @@ console.log(result.categories) // Detailed category scores
 ```typescript
 const result = await client.check({
   content: 'Some text to moderate',
-  policyId: 'moderate'
+  policyId: 'balanced'
 })
 
 if (result.action === 'block') {
@@ -65,7 +65,7 @@ if (result.action === 'block') {
 ```typescript
 const results = await client.batchCheck({
   items: [
-    { id: '1', content: 'First message', policyId: 'moderate' },
+    { id: '1', content: 'First message', policyId: 'balanced' },
     { id: '2', content: 'Second message', policyId: 'strict' }
   ]
 })
@@ -114,7 +114,7 @@ await client.registerWebhook({
 try {
   const result = await client.check({
     content: 'Some content',
-    policyId: 'moderate'
+    policyId: 'balanced'
   })
 } catch (error) {
   if (error.code === 'POLICY_NOT_FOUND') {
@@ -202,6 +202,3 @@ VETTLY_API_KEY=mod_live_...  # Required: Your API key
 - [GitHub](https://github.com/vettly-dev/api)
 - [Examples](https://github.com/vettly-dev/api/tree/main/examples)
 
-## License
-
-MIT © Vettly

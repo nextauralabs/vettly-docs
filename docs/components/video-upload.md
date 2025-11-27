@@ -26,7 +26,7 @@ function VideoUploader() {
   return (
     <ModeratedVideoUpload
       apiKey="your-api-key"
-      policyId="moderate"
+      policyId="balanced"
       onUpload={(file, results) => {
         if (results.every(r => r.safe)) {
           console.log('All frames safe!')
@@ -65,7 +65,7 @@ function VideoUploader() {
 ```tsx
 <ModeratedVideoUpload
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   onUpload={(file, results) => {
     console.log(`Checked ${results.length} frames`)
     const allSafe = results.every(r => r.safe)
@@ -110,7 +110,7 @@ function VideoPost() {
   return (
     <ModeratedVideoUpload
       apiKey="vettly_xxxxx"
-      policyId="moderate"
+      policyId="balanced"
       onUpload={handleUpload}
     />
   )

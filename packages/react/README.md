@@ -24,7 +24,7 @@ function MyForm() {
   return (
     <ModeratedTextarea
       apiKey="your-api-key"
-      policyId="moderate"
+      policyId="balanced"
       placeholder="Enter your comment..."
       onChange={(value, result) => {
         console.log('Content:', value);
@@ -212,7 +212,7 @@ function VideoUploadForm() {
   return (
     <ModeratedVideoUpload
       apiKey={process.env.VETTLY_API_KEY}
-      policyId="moderate"
+      policyId="balanced"
       onUpload={(file, result) => {
         console.log('Video uploaded:', file.name);
         console.log('Safe:', result.safe);
@@ -354,7 +354,7 @@ function CommentForm() {
           <ModeratedTextarea
             {...field}
             apiKey={process.env.VETTLY_API_KEY}
-            policyId="moderate"
+            policyId="balanced"
             onChange={(value, result) => {
               field.onChange(value);
             }}
@@ -379,7 +379,7 @@ function MultiStepForm() {
       {step === 1 && (
         <ModeratedTextarea
           apiKey={apiKey}
-          policyId="moderate"
+          policyId="balanced"
           onChange={(value, result) => {
             setIsSafe(result.safe);
           }}
@@ -424,12 +424,6 @@ function MultiStepForm() {
 - Firefox: Latest 2 versions
 - Safari: Latest 2 versions
 - Mobile: iOS Safari 12+, Chrome Android Latest
-
----
-
-## License
-
-MIT
 
 ---
 

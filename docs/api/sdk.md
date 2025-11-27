@@ -19,7 +19,7 @@ const client = new ModerationClient({
 
 const result = await client.check({
   content: 'Text to moderate',
-  policyId: 'moderate',
+  policyId: 'balanced',
   contentType: 'text'
 })
 
@@ -50,7 +50,7 @@ interface ModerationClientConfig {
 ```typescript
 const client = new ModerationClient({
   apiKey: 'vettly_xxxxx',
-  apiUrl: 'https://api.vettly.dev',
+  apiUrl: 'https://vettly-production.up.railway.app',
   mode: 'production',
   timeout: 10000  // 10 seconds
 })
@@ -109,7 +109,7 @@ interface Category {
 ```typescript
 const result = await client.check({
   content: 'Hello, world!',
-  policyId: 'moderate',
+  policyId: 'balanced',
   contentType: 'text',
   metadata: {
     userId: 'user_123',
@@ -168,7 +168,7 @@ async batchCheck(request: {
 
 ```typescript
 const results = await client.batchCheck({
-  policyId: 'moderate',
+  policyId: 'balanced',
   items: [
     { id: 'comment_1', content: 'Great post!' },
     { id: 'comment_2', content: 'Inappropriate content...' },
@@ -202,7 +202,7 @@ async batchCheckAsync(request: {
 
 ```typescript
 const batch = await client.batchCheckAsync({
-  policyId: 'moderate',
+  policyId: 'balanced',
   items: [
     { id: '1', content: 'Comment 1' },
     { id: '2', content: 'Comment 2' },
@@ -262,7 +262,7 @@ async getPolicy(policyId: string): Promise<Policy>
 #### Example
 
 ```typescript
-const policy = await client.getPolicy('moderate')
+const policy = await client.getPolicy('balanced')
 
 console.log('Policy name:', policy.name)
 console.log('Categories:', policy.categories)
@@ -344,7 +344,7 @@ async replayDecision(
 #### Example
 
 ```typescript
-// Original decision used 'moderate' policy
+// Original decision used 'balanced' policy
 const original = await client.getDecision('dec_abc123')
 
 // Replay with 'strict' policy
@@ -373,10 +373,10 @@ console.log(curl)
 
 Output:
 ```bash
-curl -X POST https://api.vettly.dev/v1/check \
+curl -X POST https://vettly-production.up.railway.app/v1/check \
   -H "Authorization: Bearer vettly_xxxxx" \
   -H "Content-Type: application/json" \
-  -d '{"content":"...","policyId":"moderate","contentType":"text"}'
+  -d '{"content":"...","policyId":"balanced","contentType":"text"}'
 ```
 
 ## Webhooks
@@ -553,7 +553,7 @@ const client = new ModerationClient({ apiKey: 'vettly_xxxxx' })
 app.post('/api/comments',
   moderateContent({
     client,
-    policyId: 'moderate',
+    policyId: 'balanced',
     field: 'body.content',  // Check req.body.content
     onFlagged: (req, res, result) => {
       // Custom handling
@@ -584,7 +584,7 @@ If `onFlagged` is not provided:
 app.post('/api/posts',
   moderateContent({
     client,
-    policyId: 'moderate',
+    policyId: 'balanced',
     field: 'body.post.content'  // Checks req.body.post.content
   }),
   handler
@@ -599,7 +599,7 @@ All SDK methods throw errors on failure:
 try {
   const result = await client.check({
     content: 'Text',
-    policyId: 'moderate',
+    policyId: 'balanced',
     contentType: 'text'
   })
 } catch (error) {
@@ -640,7 +640,7 @@ import type {
 
 const request: CheckRequest = {
   content: 'Text to check',
-  policyId: 'moderate',
+  policyId: 'balanced',
   contentType: 'text'
 }
 
@@ -683,7 +683,7 @@ const results = await Promise.all(
     limit(() =>
       client.check({
         content: comment.text,
-        policyId: 'moderate',
+        policyId: 'balanced',
         contentType: 'text'
       })
     )
@@ -740,11 +740,11 @@ async function checkMultiplePolicies(
 const results = await checkMultiplePolicies(
   client,
   'Hello world',
-  ['lenient', 'moderate', 'strict']
+  ['permissive', 'balanced', 'strict']
 )
 
-console.log('Lenient:', results.get('lenient')?.safe)
-console.log('Moderate:', results.get('moderate')?.safe)
+console.log('Permissive:', results.get('permissive')?.safe)
+console.log('Moderate:', results.get('balanced')?.safe)
 console.log('Strict:', results.get('strict')?.safe)
 ```
 

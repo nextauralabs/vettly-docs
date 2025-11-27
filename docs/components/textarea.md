@@ -25,7 +25,7 @@ function CommentForm() {
   return (
     <ModeratedTextarea
       apiKey="your-api-key"
-      policyId="moderate"
+      policyId="balanced"
       placeholder="Write a comment..."
     />
   )
@@ -72,7 +72,7 @@ function App() {
   return (
     <ModeratedTextarea
       apiKey="vettly_xxxxx"
-      policyId="moderate"
+      policyId="balanced"
       placeholder="Type something..."
     />
   )
@@ -133,7 +133,7 @@ Adjust how quickly content is checked (reduce API calls):
 ```tsx
 <ModeratedTextarea
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   debounceMs={1000} // Wait 1 second after user stops typing
 />
 ```
@@ -145,7 +145,7 @@ Override the default feedback message:
 ```tsx
 <ModeratedTextarea
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   customFeedback={(result) => {
     if (result.isChecking) {
       return <p>🔍 Checking your content...</p>
@@ -180,7 +180,7 @@ Disable the feedback UI entirely:
 ```tsx
 <ModeratedTextarea
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   showFeedback={false}
   onModerationResult={(result) => {
     // Handle moderation result yourself
@@ -196,7 +196,7 @@ Override the default styles:
 ```tsx
 <ModeratedTextarea
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   className="my-custom-textarea"
   style={{
     minHeight: '200px',
@@ -241,7 +241,7 @@ function App() {
     <div>
       <ModeratedTextarea
         apiKey="vettly_xxxxx"
-        policyId="moderate"
+        policyId="balanced"
         onModerationError={(err) => {
           console.error('Moderation failed:', err)
           setError(err.message)
@@ -265,7 +265,7 @@ Access the complete moderation data:
 ```tsx
 <ModeratedTextarea
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   onModerationResult={(result) => {
     console.log('Decision ID:', result.decisionId)
     console.log('Safe:', result.safe)
@@ -341,7 +341,7 @@ import type {
 
 const props: ModeratedTextareaProps = {
   apiKey: 'vettly_xxxxx',
-  policyId: 'moderate',
+  policyId: 'balanced',
   onChange: (value: string, result: ModerationResult) => {
     // Fully typed!
   }

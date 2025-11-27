@@ -22,7 +22,7 @@ Your application uses either:
 // React Component
 <ModeratedTextarea
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   onChange={(value, result) => {
     console.log('Safe:', result.safe)
   }}
@@ -32,7 +32,7 @@ Your application uses either:
 const client = new ModerationClient({ apiKey: 'vettly_xxxxx' })
 const result = await client.check({
   content: 'Text to check',
-  policyId: 'moderate',
+  policyId: 'balanced',
   contentType: 'text'
 })
 ```
@@ -69,7 +69,7 @@ Your app sends content to Vettly:
 ```typescript
 const result = await client.check({
   content: 'Check this text',
-  policyId: 'moderate',
+  policyId: 'balanced',
   contentType: 'text'
 })
 ```
@@ -80,7 +80,7 @@ Vettly applies your policy's category thresholds:
 
 ```json
 {
-  "policyId": "moderate",
+  "policyId": "balanced",
   "categories": {
     "violence": { "threshold": 0.7 },
     "sexual": { "threshold": 0.8 },
@@ -167,7 +167,7 @@ Vettly returns a detailed response:
 const result = await client.check({
   content: 'Text to check',
   contentType: 'text',
-  policyId: 'moderate'
+  policyId: 'balanced'
 })
 ```
 
@@ -217,7 +217,7 @@ Video (60s) → Extract 5 frames → Analyze each → Aggregate scores
 ```typescript
 const result = await client.checkVideo({
   videoFile: file,
-  policyId: 'moderate',
+  policyId: 'balanced',
   extractFrames: 5
 })
 ```
@@ -233,10 +233,10 @@ Policies define what content is acceptable. Each policy has:
 
 | Policy ID | Use Case | Sensitivity |
 |-----------|----------|-------------|
-| `lenient` | Open platforms | Low |
-| `moderate` | Social media | Medium |
+| `permissive` | Open platforms | Low |
+| `balanced` | Social media | Medium |
 | `strict` | Kids apps, education | High |
-| `marketplace` | E-commerce listings | Medium-High |
+| `ecommerce` | E-commerce listings | Medium-High |
 
 ### Custom Policies
 
@@ -395,7 +395,7 @@ When moderation fails:
 ```tsx
 const { result, check } = useModeration({
   apiKey: 'vettly_xxxxx',
-  policyId: 'moderate',
+  policyId: 'balanced',
   onError: (error) => {
     // Option 1: Allow content (risky)
     setFallbackSafe(true)
@@ -446,7 +446,7 @@ const { result, check } = useModeration({
 ```tsx
 <ModeratedTextarea
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   onChange={(value, result) => {
     setCanSubmit(result.safe)
   }}
@@ -459,7 +459,7 @@ const { result, check } = useModeration({
 app.post('/api/posts', async (req, res) => {
   const result = await client.check({
     content: req.body.content,
-    policyId: 'moderate',
+    policyId: 'balanced',
     contentType: 'text'
   })
 
@@ -479,7 +479,7 @@ const results = await Promise.all(
   comments.map(comment =>
     client.check({
       content: comment.text,
-      policyId: 'moderate',
+      policyId: 'balanced',
       contentType: 'text'
     })
   )

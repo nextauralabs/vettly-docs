@@ -6,7 +6,7 @@ Get up and running with Vettly in under 5 minutes.
 
 - Node.js 18+ or Bun
 - React 18+ (for React components)
-- A Vettly API key ([get one here](https://app.vettly.dev))
+- A Vettly API key ([get one here](https://dashboard.vettly.dev))
 
 ## Installation
 
@@ -110,7 +110,7 @@ Create a `.env` file:
 VITE_VETTLY_API_KEY=vettly_xxxxx
 
 # Optional: Override API endpoint
-VITE_VETTLY_API_URL=https://api.vettly.dev
+VITE_VETTLY_API_URL=https://vettly-production.up.railway.app
 ```
 
 ### Component Props
@@ -120,7 +120,7 @@ All components accept these common props:
 ```typescript
 interface CommonProps {
   apiKey: string                    // Your Vettly API key
-  policy?: 'strict' | 'moderate' | 'permissive'  // Pre-built policy
+  policy?: 'strict' | 'balanced' | 'permissive'  // Pre-built policy
   blockUnsafe?: boolean             // Prevent unsafe content submission
   debounceMs?: number               // API call delay (default: 500ms)
   onModerationResult?: (result) => void

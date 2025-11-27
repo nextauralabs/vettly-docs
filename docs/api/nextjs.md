@@ -41,7 +41,7 @@ export default function CommentsPage() {
   return (
     <ModeratedTextarea
       apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY!}
-      policyId="moderate"
+      policyId="balanced"
       placeholder="Write a comment..."
     />
   )
@@ -67,7 +67,7 @@ export async function createPost(formData: FormData) {
 
   const result = await client.check({
     content,
-    policyId: 'moderate',
+    policyId: 'balanced',
     contentType: 'text'
   })
 
@@ -130,7 +130,7 @@ export async function POST(request: NextRequest) {
 
     const result = await client.check({
       content,
-      policyId: policyId || 'moderate',
+      policyId: policyId || 'balanced',
       contentType: 'text'
     })
 
@@ -155,7 +155,7 @@ async function checkContent(text: string) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       content: text,
-      policyId: 'moderate'
+      policyId: 'balanced'
     })
   })
 
@@ -179,7 +179,7 @@ async function moderateRequest(request: NextRequest) {
 
   const result = await client.check({
     content: body.content,
-    policyId: 'moderate',
+    policyId: 'balanced',
     contentType: 'text'
   })
 
@@ -222,7 +222,7 @@ export default function CommentsPage() {
   return (
     <ModeratedTextarea
       apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY!}
-      policyId="moderate"
+      policyId="balanced"
     />
   )
 }
@@ -252,7 +252,7 @@ export default async function handler(
 
     const result = await client.check({
       content,
-      policyId: policyId || 'moderate',
+      policyId: policyId || 'balanced',
       contentType: 'text',
       metadata: {
         ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress,
@@ -323,7 +323,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 export default withModeration(handler, {
-  policyId: 'moderate',
+  policyId: 'balanced',
   field: 'text'
 })
 ```
@@ -363,7 +363,7 @@ export default function ImageUploader() {
   return (
     <ModeratedImageUpload
       apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY!}
-      policyId="marketplace"
+      policyId="ecommerce"
       onUpload={handleUpload}
     />
   )
@@ -431,7 +431,7 @@ export default function PostForm() {
 
   const { result, check } = useModeration({
     apiKey: process.env.NEXT_PUBLIC_VETTLY_API_KEY!,
-    policyId: 'moderate'
+    policyId: 'balanced'
   })
 
   const onSubmit = async (data: any) => {
@@ -479,7 +479,7 @@ export async function POST(request: NextRequest) {
   const { items } = await request.json()
 
   const results = await client.batchCheck({
-    policyId: 'moderate',
+    policyId: 'balanced',
     items: items.map((item: any) => ({
       id: item.id,
       content: item.text,
@@ -590,7 +590,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<CheckResp
 
   const result = await client.check({
     content,
-    policyId: 'moderate',
+    policyId: 'balanced',
     contentType: 'text'
   })
 
@@ -622,7 +622,7 @@ export async function POST(request: NextRequest) {
 
   const result = await serverSideClient.check({
     content,
-    policyId: 'moderate',
+    policyId: 'balanced',
     contentType: 'text'
   })
 

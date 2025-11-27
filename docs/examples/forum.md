@@ -174,7 +174,7 @@ export default function CreateThread({ topicId }: { topicId: string }) {
         <label className="block text-sm font-medium mb-2">Title</label>
         <ModeratedTextarea
           apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY!}
-          policyId="moderate"
+          policyId="balanced"
           value={title}
           onChange={(value, result) => {
             setTitle(value)
@@ -190,7 +190,7 @@ export default function CreateThread({ topicId }: { topicId: string }) {
         <label className="block text-sm font-medium mb-2">Content</label>
         <ModeratedTextarea
           apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY!}
-          policyId="moderate"
+          policyId="balanced"
           value={content}
           onChange={(value, result) => {
             setContent(value)
@@ -302,7 +302,7 @@ export default function ThreadView({ thread }: { thread: Thread }) {
           <h3 className="font-semibold mb-3">Reply to Thread</h3>
           <ModeratedTextarea
             apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY!}
-            policyId="moderate"
+            policyId="balanced"
             value={replyContent}
             onChange={(value, result) => {
               setReplyContent(value)
@@ -416,7 +416,7 @@ function ReplyForm({ postId, onCancel }: { postId: string; onCancel: () => void 
     <div className="mt-3 border-l-2 border-blue-200 pl-4">
       <ModeratedTextarea
         apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY!}
-        policyId="moderate"
+        policyId="balanced"
         value={content}
         onChange={(value, result) => {
           setContent(value)
@@ -608,13 +608,13 @@ export async function POST(request: NextRequest) {
     const [titleResult, contentResult] = await Promise.all([
       client.check({
         content: title,
-        policyId: 'moderate',
+        policyId: 'balanced',
         contentType: 'text',
         metadata: { userId, type: 'thread_title' }
       }),
       client.check({
         content,
-        policyId: 'moderate',
+        policyId: 'balanced',
         contentType: 'text',
         metadata: { userId, type: 'thread_content' }
       })

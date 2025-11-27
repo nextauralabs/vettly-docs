@@ -5,7 +5,7 @@ Direct HTTP API reference for Vettly moderation.
 ## Base URL
 
 ```
-https://api.vettly.dev
+https://vettly-production.up.railway.app
 ```
 
 ## Authentication
@@ -31,7 +31,7 @@ POST /v1/check
 ```json
 {
   "content": "Text to moderate",
-  "policyId": "moderate",
+  "policyId": "balanced",
   "contentType": "text",
   "metadata": {
     "userId": "user_123",
@@ -71,12 +71,12 @@ POST /v1/check
 #### cURL Example
 
 ```bash
-curl -X POST https://api.vettly.dev/v1/check \
+curl -X POST https://vettly-production.up.railway.app/v1/check \
   -H "Authorization: Bearer vettly_xxxxx" \
   -H "Content-Type: application/json" \
   -d '{
     "content": "Hello, world!",
-    "policyId": "moderate",
+    "policyId": "balanced",
     "contentType": "text"
   }'
 ```
@@ -93,7 +93,7 @@ POST /v1/check/dry-run
 
 ```json
 {
-  "policyId": "moderate",
+  "policyId": "balanced",
   "mockScores": {
     "violence": 0.8,
     "sexual": 0.3,
@@ -114,7 +114,7 @@ POST /v1/batch/check
 
 ```json
 {
-  "policyId": "moderate",
+  "policyId": "balanced",
   "items": [
     {
       "id": "comment_1",
@@ -163,7 +163,7 @@ POST /v1/batch/check/async
 
 ```json
 {
-  "policyId": "moderate",
+  "policyId": "balanced",
   "items": [
     { "id": "1", "content": "Text 1" },
     { "id": "2", "content": "Text 2" }
@@ -217,7 +217,7 @@ GET /v1/policies
 {
   "policies": [
     {
-      "policyId": "moderate",
+      "policyId": "balanced",
       "name": "Moderate Policy",
       "categories": { ... }
     }
@@ -242,7 +242,7 @@ GET /v1/decisions/{decisionId}
   "safe": true,
   "action": "allow",
   "timestamp": "2025-01-18T10:30:00Z",
-  "policyId": "moderate"
+  "policyId": "balanced"
 }
 ```
 
@@ -276,7 +276,7 @@ GET /v1/decisions/{decisionId}/curl
 
 ```json
 {
-  "curl": "curl -X POST https://api.vettly.dev/v1/check..."
+  "curl": "curl -X POST https://vettly-production.up.railway.app/v1/check..."
 }
 ```
 
@@ -532,14 +532,14 @@ See [Webhooks documentation](/api/webhooks) for details on:
 import requests
 
 response = requests.post(
-    'https://api.vettly.dev/v1/check',
+    'https://vettly-production.up.railway.app/v1/check',
     headers={
         'Authorization': 'Bearer vettly_xxxxx',
         'Content-Type': 'application/json'
     },
     json={
         'content': 'Text to check',
-        'policyId': 'moderate',
+        'policyId': 'balanced',
         'contentType': 'text'
     }
 )
@@ -562,7 +562,7 @@ import (
 func checkContent(content string) (bool, error) {
     payload := map[string]string{
         "content": content,
-        "policyId": "moderate",
+        "policyId": "balanced",
         "contentType": "text",
     }
 
@@ -570,7 +570,7 @@ func checkContent(content string) (bool, error) {
 
     req, _ := http.NewRequest(
         "POST",
-        "https://api.vettly.dev/v1/check",
+        "https://vettly-production.up.railway.app/v1/check",
         bytes.NewBuffer(body),
     )
 
@@ -590,7 +590,7 @@ func checkContent(content string) (bool, error) {
 require 'net/http'
 require 'json'
 
-uri = URI('https://api.vettly.dev/v1/check')
+uri = URI('https://vettly-production.up.railway.app/v1/check')
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 
@@ -599,7 +599,7 @@ request['Authorization'] = 'Bearer vettly_xxxxx'
 request['Content-Type'] = 'application/json'
 request.body = {
   content: 'Text to check',
-  policyId: 'moderate',
+  policyId: 'balanced',
   contentType: 'text'
 }.to_json
 

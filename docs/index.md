@@ -146,8 +146,3 @@ Check out complete working examples:
 - [Forum](/examples/forum) - Discussion board with moderation
 - [Chat App](/examples/chat) - Real-time chat with safety
 
-## Open Source
-
-Vettly is MIT licensed and open source. Contributions welcome!
-
-[GitHub →](https://github.com/brian-nextaura/vettly-docs)

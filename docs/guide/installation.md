@@ -65,7 +65,7 @@ function App() {
   return (
     <ModeratedTextarea
       apiKey="your-api-key"
-      policyId="moderate"
+      policyId="balanced"
       placeholder="Type something..."
     />
   )
@@ -109,7 +109,7 @@ const client = new ModerationClient({
 
 const result = await client.check({
   content: 'Text to moderate',
-  policyId: 'moderate',
+  policyId: 'balanced',
   contentType: 'text'
 })
 
@@ -142,7 +142,7 @@ Use in your code:
 ```tsx
 <ModeratedTextarea
   apiKey={import.meta.env.VITE_VETTLY_API_KEY}
-  policyId="moderate"
+  policyId="balanced"
 />
 ```
 
@@ -159,7 +159,7 @@ Use in your code:
 ```tsx
 <ModeratedTextarea
   apiKey={process.env.REACT_APP_VETTLY_API_KEY}
-  policyId="moderate"
+  policyId="balanced"
 />
 ```
 
@@ -176,7 +176,7 @@ Use in your code:
 ```tsx
 <ModeratedTextarea
   apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY}
-  policyId="moderate"
+  policyId="balanced"
 />
 ```
 
@@ -240,7 +240,7 @@ export default function CommentForm() {
   return (
     <ModeratedTextarea
       apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY!}
-      policyId="moderate"
+      policyId="balanced"
     />
   )
 }
@@ -301,7 +301,7 @@ app.post('/api/comments', async (req, res) => {
 
   const result = await moderationClient.check({
     content,
-    policyId: 'moderate',
+    policyId: 'balanced',
     contentType: 'text'
   })
 
@@ -332,7 +332,7 @@ export default function TestVettly() {
       <h1>Vettly Test</h1>
       <ModeratedTextarea
         apiKey={process.env.NEXT_PUBLIC_VETTLY_API_KEY!}
-        policyId="moderate"
+        policyId="balanced"
         placeholder="Type something to test moderation..."
         onChange={(value, result) => {
           console.log('Moderation result:', result)

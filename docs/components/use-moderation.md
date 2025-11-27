@@ -24,7 +24,7 @@ import { useModeration } from '@nextauralabs/vettly-react'
 function CustomModeratedInput() {
   const { result, check } = useModeration({
     apiKey: 'vettly_xxxxx',
-    policyId: 'moderate'
+    policyId: 'balanced'
   })
 
   return (
@@ -114,7 +114,7 @@ import { useModeration } from '@nextauralabs/vettly-react'
 function ModeratedInput() {
   const { result, check } = useModeration({
     apiKey: process.env.VITE_VETTLY_API_KEY!,
-    policyId: 'moderate'
+    policyId: 'balanced'
   })
 
   return (
@@ -149,7 +149,7 @@ function ModeratedInput() {
 ```tsx
 const { result, check } = useModeration({
   apiKey: 'vettly_xxxxx',
-  policyId: 'moderate',
+  policyId: 'balanced',
   debounceMs: 1000 // Wait 1 second after typing stops
 })
 ```
@@ -160,7 +160,7 @@ const { result, check } = useModeration({
 function ConditionalModeration({ enabled }: { enabled: boolean }) {
   const { result, check } = useModeration({
     apiKey: 'vettly_xxxxx',
-    policyId: 'moderate',
+    policyId: 'balanced',
     enabled // Only check when enabled
   })
 
@@ -186,7 +186,7 @@ function ConditionalModeration({ enabled }: { enabled: boolean }) {
 ```tsx
 const { result, check } = useModeration({
   apiKey: 'vettly_xxxxx',
-  policyId: 'moderate',
+  policyId: 'balanced',
   onCheck: (response) => {
     console.log('Decision ID:', response.decisionId)
     console.log('Provider:', response.provider)
@@ -212,7 +212,7 @@ function RobustModeration() {
 
   const { result, check } = useModeration({
     apiKey: 'vettly_xxxxx',
-    policyId: 'moderate',
+    policyId: 'balanced',
     onError: (err) => {
       console.error('Moderation failed:', err)
       setError(err.message)
@@ -244,7 +244,7 @@ function RobustModeration() {
 function CustomImageUpload() {
   const { result, check } = useModeration({
     apiKey: 'vettly_xxxxx',
-    policyId: 'moderate'
+    policyId: 'balanced'
   })
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -259,7 +259,7 @@ function CustomImageUpload() {
       check({
         content: base64.split(',')[1], // Remove data:image/... prefix
         contentType: 'image',
-        policyId: 'moderate'
+        policyId: 'balanced'
       })
     }
     reader.readAsDataURL(file)
@@ -297,7 +297,7 @@ function ModeratedForm() {
 
   const bioModeration = useModeration({
     apiKey: 'vettly_xxxxx',
-    policyId: 'moderate',
+    policyId: 'balanced',
     debounceMs: 1000 // Longer debounce for bio
   })
 
@@ -368,7 +368,7 @@ function ModeratedEditor() {
 
   const { result, check } = useModeration({
     apiKey: 'vettly_xxxxx',
-    policyId: 'moderate',
+    policyId: 'balanced',
     debounceMs: 1500 // Longer debounce for rich text
   })
 
@@ -417,8 +417,8 @@ function MultiStepForm() {
   })
 
   const titleMod = useModeration({ apiKey: 'vettly_xxxxx', policyId: 'strict' })
-  const descMod = useModeration({ apiKey: 'vettly_xxxxx', policyId: 'moderate' })
-  const contentMod = useModeration({ apiKey: 'vettly_xxxxx', policyId: 'moderate' })
+  const descMod = useModeration({ apiKey: 'vettly_xxxxx', policyId: 'balanced' })
+  const contentMod = useModeration({ apiKey: 'vettly_xxxxx', policyId: 'balanced' })
 
   const canProceed = (currentStep: number) => {
     switch (currentStep) {
@@ -502,7 +502,7 @@ function LiveFeedback() {
 
   const { result, check } = useModeration({
     apiKey: 'vettly_xxxxx',
-    policyId: 'moderate'
+    policyId: 'balanced'
   })
 
   const getFeedbackColor = () => {
@@ -627,7 +627,7 @@ function CommentBox({ postId }: { postId: string }) {
 function OptimisticComment() {
   const { result, check } = useModeration({
     apiKey: 'vettly_xxxxx',
-    policyId: 'moderate'
+    policyId: 'balanced'
   })
 
   // Allow UI to update immediately, check in background
@@ -654,7 +654,7 @@ function ManualCheck() {
 
   const { result, check } = useModeration({
     apiKey: 'vettly_xxxxx',
-    policyId: 'moderate',
+    policyId: 'balanced',
     debounceMs: 0 // No debounce, manual only
   })
 
@@ -676,14 +676,14 @@ function ManualCheck() {
 
 ```tsx
 function DynamicPolicy({ userRole }: { userRole: 'admin' | 'user' }) {
-  const policyId = userRole === 'admin' ? 'lenient' : 'strict'
+  const policyId = userRole === 'admin' ? 'permissive' : 'strict'
 
   const { result, check } = useModeration({
     apiKey: 'vettly_xxxxx',
     policyId // Changes based on user role
   })
 
-  // Admins get more lenient moderation
+  // Admins get more permissive moderation
 }
 ```
 
@@ -701,7 +701,7 @@ import type {
 
 const options: UseModerationOptions = {
   apiKey: 'vettly_xxxxx',
-  policyId: 'moderate',
+  policyId: 'balanced',
   debounceMs: 500,
   onCheck: (result: CheckResponse) => {
     console.log(result.safe)
@@ -726,7 +726,7 @@ console.log(result.action) // 'allow' | 'warn' | 'flag' | 'block'
    ```tsx
    const { result, check } = useModeration({
      apiKey: 'vettly_xxxxx',
-     policyId: 'moderate',
+     policyId: 'balanced',
      enabled: isFormVisible // Only check when form is visible
    })
    ```

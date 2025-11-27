@@ -97,7 +97,7 @@ Fired when a single moderation check completes.
         "triggered": false
       }
     ],
-    "policyId": "moderate",
+    "policyId": "balanced",
     "provider": "openai",
     "latency": 234,
     "cost": 0.001
@@ -116,7 +116,7 @@ Fired when a moderation check fails.
   "timestamp": "2025-01-18T10:31:00Z",
   "data": {
     "content": "Content that failed",
-    "policyId": "moderate",
+    "policyId": "balanced",
     "error": "Provider timeout",
     "errorCode": "PROVIDER_TIMEOUT"
   }

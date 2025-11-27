@@ -22,7 +22,7 @@ app.use(express.json())
 app.post('/api/comments',
   moderateContent({
     client,
-    policyId: 'moderate'
+    policyId: 'balanced'
   }),
   (req, res) => {
     // Content is safe, save comment
@@ -45,7 +45,7 @@ const { moderateContent } = require('@nextauralabs/vettly-sdk')
 app.post('/api/posts',
   moderateContent({
     client,                    // ModerationClient instance
-    policyId: 'moderate',      // Policy to use
+    policyId: 'balanced',      // Policy to use
     field: 'body.content',     // Field to check (default: 'body.content')
     onFlagged: (req, res, result) => {  // Optional custom handler
       res.status(400).json({
@@ -113,7 +113,7 @@ app.post('/api/comments',
 app.post('/api/posts',
   moderateContent({
     client,
-    policyId: 'moderate',
+    policyId: 'balanced',
     onFlagged: (req, res, result) => {
       // Log for review
       logger.warn('Content flagged', {
@@ -161,7 +161,7 @@ const checkTitle = moderateContent({
 
 const checkContent = moderateContent({
   client,
-  policyId: 'moderate',
+  policyId: 'balanced',
   field: 'body.content'
 })
 
@@ -182,8 +182,8 @@ Different policies for different user types:
 
 ```javascript
 function getUserPolicy(user) {
-  if (user.role === 'admin') return 'lenient'
-  if (user.verified) return 'moderate'
+  if (user.role === 'admin') return 'permissive'
+  if (user.verified) return 'balanced'
   return 'strict'
 }
 
@@ -204,7 +204,7 @@ app.post('/api/comments', async (req, res) => {
   try {
     const result = await client.check({
       content: req.body.text,
-      policyId: 'moderate',
+      policyId: 'balanced',
       contentType: 'text',
       metadata: {
         userId: req.user.id,
@@ -258,7 +258,7 @@ app.post('/api/images',
     // Check image
     const result = await client.check({
       content: base64,
-      policyId: 'marketplace',
+      policyId: 'ecommerce',
       contentType: 'image'
     })
 
@@ -286,7 +286,7 @@ app.post('/api/comments/bulk', async (req, res) => {
   const { comments } = req.body
 
   const batchResult = await client.batchCheck({
-    policyId: 'moderate',
+    policyId: 'balanced',
     items: comments.map((comment, i) => ({
       id: i.toString(),
       content: comment.text,
@@ -393,7 +393,7 @@ app.post('/api/comments', async (req, res) => {
     const result = await Promise.race([
       client.check({
         content: req.body.text,
-        policyId: 'moderate',
+        policyId: 'balanced',
         contentType: 'text'
       }),
       new Promise((_, reject) =>
@@ -549,7 +549,7 @@ const client = new ModerationClient({
 app.post('/api/comments',
   moderateContent({
     client,
-    policyId: 'moderate'
+    policyId: 'balanced'
   }),
   async (req: Request, res: Response) => {
     res.json({ success: true })

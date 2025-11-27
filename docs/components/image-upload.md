@@ -26,7 +26,7 @@ function ProfilePictureUpload() {
   return (
     <ModeratedImageUpload
       apiKey="your-api-key"
-      policyId="moderate"
+      policyId="balanced"
       onUpload={(file, result) => {
         if (result.safe) {
           // Upload to your server
@@ -71,7 +71,7 @@ function App() {
   return (
     <ModeratedImageUpload
       apiKey="vettly_xxxxx"
-      policyId="moderate"
+      policyId="balanced"
       onUpload={(file, result) => {
         console.log('File:', file.name)
         console.log('Safe:', result.safe)
@@ -121,7 +121,7 @@ function ProfilePicture() {
     <div>
       <ModeratedImageUpload
         apiKey="vettly_xxxxx"
-        policyId="moderate"
+        policyId="balanced"
         onUpload={handleUpload}
       />
 
@@ -137,7 +137,7 @@ function ProfilePicture() {
 ```tsx
 <ModeratedImageUpload
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   maxSizeMB={5} // 5MB limit
   onUpload={(file, result) => {
     console.log('File size:', file.size / 1024 / 1024, 'MB')
@@ -150,7 +150,7 @@ function ProfilePicture() {
 ```tsx
 <ModeratedImageUpload
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   acceptedFormats={['image/jpeg', 'image/png']} // Only JPEG and PNG
 />
 ```
@@ -162,7 +162,7 @@ By default, flagged images are blocked. To allow them:
 ```tsx
 <ModeratedImageUpload
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   blockUnsafe={false} // Allow flagged images
   onUpload={(file, result) => {
     if (!result.safe) {
@@ -180,7 +180,7 @@ Customize the moderation feedback:
 ```tsx
 <ModeratedImageUpload
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   customFeedback={(result) => {
     if (result.isChecking) {
       return (
@@ -246,7 +246,7 @@ function Gallery() {
       {images.length < 10 && (
         <ModeratedImageUpload
           apiKey="vettly_xxxxx"
-          policyId="moderate"
+          policyId="balanced"
           onUpload={handleUpload}
         />
       )}
@@ -275,7 +275,7 @@ function App() {
     <div>
       <ModeratedImageUpload
         apiKey="vettly_xxxxx"
-        policyId="moderate"
+        policyId="balanced"
         onModerationError={(err) => {
           setError(err.message)
           console.error('Moderation failed:', err)
@@ -300,7 +300,7 @@ Disable the image preview:
 ```tsx
 <ModeratedImageUpload
   apiKey="vettly_xxxxx"
-  policyId="moderate"
+  policyId="balanced"
   showPreview={false}
 />
 ```
@@ -374,7 +374,7 @@ import type {
 
 const props: ModeratedImageUploadProps = {
   apiKey: 'vettly_xxxxx',
-  policyId: 'moderate',
+  policyId: 'balanced',
   onUpload: (file: File, result: ModerationResult) => {
     // Fully typed!
   }
@@ -426,7 +426,7 @@ function ProductImageUpload() {
   return (
     <ModeratedImageUpload
       apiKey="vettly_xxxxx"
-      policyId="marketplace"
+      policyId="ecommerce"
       maxSizeMB={5}
       blockUnsafe={true}
       onUpload={async (file, result) => {

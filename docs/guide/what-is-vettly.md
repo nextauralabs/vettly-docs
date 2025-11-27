@@ -109,7 +109,7 @@ Moderate posts, comments, and messages in real-time.
 
 ```tsx
 <ModeratedTextarea
-  policy="moderate"
+  policy="balanced"
   onModerationResult={handleComment}
 />
 ```
@@ -154,15 +154,6 @@ Protect users from harassment and NSFW content.
 - Video moderation: $0.001 per video
 
 No monthly fees, no minimums, no surprises.
-
-## Open Source
-
-Vettly components and SDK are MIT licensed:
-
-- ✅ Free for commercial use
-- ✅ Modify as needed
-- ✅ Contributions welcome
-- ✅ Transparent development
 
 ## Next Steps
 

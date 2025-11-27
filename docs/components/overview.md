@@ -14,7 +14,7 @@ import { ModeratedTextarea } from '@nextauralabs/vettly-react'
 <ModeratedTextarea
   apiKey="your-key"
   placeholder="Type a comment..."
-  policy="moderate"
+  policy="balanced"
 />
 ```
 
@@ -118,7 +118,7 @@ interface CommonProps {
   apiKey: string
 
   // Optional
-  policy?: 'strict' | 'moderate' | 'permissive'
+  policy?: 'strict' | 'balanced' | 'permissive'
   baseUrl?: string
   debounceMs?: number
   blockUnsafe?: boolean

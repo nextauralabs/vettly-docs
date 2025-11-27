@@ -48,13 +48,9 @@ bun run dev
 bun test
 ```
 
-## 📄 License
-
-MIT © Next Aura Labs
-
 ## 🔗 Links
 
 - [Main Website](https://vettly.dev)
 - [API Documentation](https://docs.vettly.dev)
-- [Dashboard](https://app.vettly.dev)
+- [Dashboard](https://dashboard.vettly.dev)
 - [GitHub](https://github.com/brian-nextaura/vettly-docs)

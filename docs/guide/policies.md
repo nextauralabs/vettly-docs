@@ -19,7 +19,7 @@ Using a pre-built policy is simple:
 ```tsx
 <ModeratedTextarea
   apiKey="vettly_xxxxx"
-  policyId="moderate" // ← Choose a pre-built policy
+  policyId="balanced" // ← Choose a pre-built policy
 />
 ```
 
@@ -27,7 +27,7 @@ Using a pre-built policy is simple:
 
 Vettly provides ready-to-use policies for common use cases:
 
-### Lenient
+### Permissive
 
 **Use for**: Open forums, discussion boards, adult platforms
 
@@ -54,10 +54,10 @@ Vettly provides ready-to-use policies for common use cases:
 - Gaming violence discussions
 
 ```tsx
-<ModeratedTextarea policyId="lenient" />
+<ModeratedTextarea policyId="permissive" />
 ```
 
-### Moderate (Default)
+### Balanced (Default)
 
 **Use for**: Social media, community platforms, SaaS apps
 
@@ -88,7 +88,7 @@ Vettly provides ready-to-use policies for common use cases:
 - Respectful debates
 
 ```tsx
-<ModeratedTextarea policyId="moderate" />
+<ModeratedTextarea policyId="balanced" />
 ```
 
 ### Strict
@@ -126,7 +126,7 @@ Vettly provides ready-to-use policies for common use cases:
 <ModeratedTextarea policyId="strict" />
 ```
 
-### Marketplace
+### E-Commerce
 
 **Use for**: E-commerce, classifieds, product listings
 
@@ -155,7 +155,7 @@ Vettly provides ready-to-use policies for common use cases:
 - Shipping details
 
 ```tsx
-<ModeratedImageUpload policyId="marketplace" />
+<ModeratedImageUpload policyId="ecommerce" />
 ```
 
 ### Social Media
@@ -404,7 +404,7 @@ const policy = {
 - ✅ Reasonable UX
 - ✅ **Recommended**
 
-**Too lenient** (0.8-0.9):
+**Too permissive** (0.8-0.9):
 - ✅ Few false positives
 - ❌ Misses violations
 - ❌ Safety concerns
@@ -412,7 +412,7 @@ const policy = {
 ### A/B Testing Policies
 
 ```tsx
-const policyId = Math.random() > 0.5 ? 'strict' : 'moderate'
+const policyId = Math.random() > 0.5 ? 'strict' : 'balanced'
 
 <ModeratedTextarea
   policyId={policyId}
@@ -453,7 +453,7 @@ Track metrics:
 
 ```typescript
 {
-  policyId: 'moderate',
+  policyId: 'balanced',
   customizations: {
     hate: 0.5,
     harassment: 0.5,
@@ -466,7 +466,7 @@ Track metrics:
 
 ```typescript
 {
-  policyId: 'lenient',
+  policyId: 'permissive',
   customizations: {
     hate: 0.6,
     harassment: 0.7,
@@ -479,7 +479,7 @@ Track metrics:
 
 ```typescript
 {
-  policyId: 'moderate',
+  policyId: 'balanced',
   customizations: {
     spam: 0.5,
     pii: 0.4,
@@ -492,7 +492,7 @@ Track metrics:
 
 ```typescript
 {
-  policyId: 'moderate',
+  policyId: 'balanced',
   customizations: {
     hate: 0.45,
     harassment: 0.55,
@@ -527,7 +527,7 @@ Use different policies in different contexts:
 
 ```tsx
 function CommentSection({ userAge }) {
-  const policyId = userAge < 13 ? 'strict' : 'moderate'
+  const policyId = userAge < 13 ? 'strict' : 'balanced'
 
   return (
     <ModeratedTextarea
@@ -540,14 +540,14 @@ function CommentSection({ userAge }) {
 function ProductListing() {
   return (
     <ModeratedImageUpload
-      policyId="marketplace"
+      policyId="ecommerce"
       apiKey="vettly_xxxxx"
     />
   )
 }
 
 function ProfileBio({ isPublic }) {
-  const policyId = isPublic ? 'strict' : 'moderate'
+  const policyId = isPublic ? 'strict' : 'balanced'
 
   return (
     <ModeratedTextarea
@@ -572,7 +572,7 @@ const testCases = [
 for (const test of testCases) {
   const result = await client.check({
     content: test.content,
-    policyId: 'moderate',
+    policyId: 'balanced',
     contentType: 'text'
   })
 
