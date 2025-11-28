@@ -50,7 +50,7 @@ interface ModerationClientConfig {
 ```typescript
 const client = new ModerationClient({
   apiKey: 'vettly_xxxxx',
-  apiUrl: 'https://vettly-production.up.railway.app',
+  apiUrl: 'https://api.vettly.dev',
   mode: 'production',
   timeout: 10000  // 10 seconds
 })
@@ -373,7 +373,7 @@ console.log(curl)
 
 Output:
 ```bash
-curl -X POST https://vettly-production.up.railway.app/v1/check \
+curl -X POST https://api.vettly.dev/v1/check \
   -H "Authorization: Bearer vettly_xxxxx" \
   -H "Content-Type: application/json" \
   -d '{"content":"...","policyId":"balanced","contentType":"text"}'

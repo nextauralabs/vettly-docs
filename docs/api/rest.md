@@ -5,7 +5,7 @@ Direct HTTP API reference for Vettly moderation.
 ## Base URL
 
 ```
-https://vettly-production.up.railway.app
+https://api.vettly.dev
 ```
 
 ## Authentication
@@ -71,7 +71,7 @@ POST /v1/check
 #### cURL Example
 
 ```bash
-curl -X POST https://vettly-production.up.railway.app/v1/check \
+curl -X POST https://api.vettly.dev/v1/check \
   -H "Authorization: Bearer vettly_xxxxx" \
   -H "Content-Type: application/json" \
   -d '{
@@ -276,7 +276,7 @@ GET /v1/decisions/{decisionId}/curl
 
 ```json
 {
-  "curl": "curl -X POST https://vettly-production.up.railway.app/v1/check..."
+  "curl": "curl -X POST https://api.vettly.dev/v1/check..."
 }
 ```
 
@@ -532,7 +532,7 @@ See [Webhooks documentation](/api/webhooks) for details on:
 import requests
 
 response = requests.post(
-    'https://vettly-production.up.railway.app/v1/check',
+    'https://api.vettly.dev/v1/check',
     headers={
         'Authorization': 'Bearer vettly_xxxxx',
         'Content-Type': 'application/json'
@@ -570,7 +570,7 @@ func checkContent(content string) (bool, error) {
 
     req, _ := http.NewRequest(
         "POST",
-        "https://vettly-production.up.railway.app/v1/check",
+        "https://api.vettly.dev/v1/check",
         bytes.NewBuffer(body),
     )
 
@@ -590,7 +590,7 @@ func checkContent(content string) (bool, error) {
 require 'net/http'
 require 'json'
 
-uri = URI('https://vettly-production.up.railway.app/v1/check')
+uri = URI('https://api.vettly.dev/v1/check')
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 
