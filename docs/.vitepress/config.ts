@@ -64,6 +64,7 @@ export default defineConfig({
           items: [
             { text: 'Next.js', link: '/api/nextjs' },
             { text: 'Express', link: '/api/express' },
+            { text: 'Unity', link: '/api/unity' },
           ]
         }
       ],

@@ -1,0 +1,25 @@
+{
+  "name": "com.vettly.unity",
+  "version": "1.0.0",
+  "displayName": "Vettly Unity SDK",
+  "description": "Trust and safety SDK for Unity games with text moderation and comprehensive editor tooling",
+  "unity": "2021.3",
+  "unityRelease": "0f1",
+  "documentationUrl": "https://docs.vettly.com",
+  "changelogUrl": "https://docs.vettly.com/changelog",
+  "licensesUrl": "https://docs.vettly.com/licenses",
+  "keywords": [
+    "trust",
+    "safety",
+    "moderation",
+    "content",
+    "filtering",
+    "sdk"
+  ],
+  "author": {
+    "name": "Vettly",
+    "email": "support@vettly.com",
+    "url": "https://vettly.com"
+  },
+  "type": "tool"
+}
