@@ -1,0 +1,17 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+
+configSchema:
+  type: object
+  required:
+    - vettlyApiKey
+  properties:
+    vettlyApiKey:
+      type: string
+      description: Your Vettly API key (starts with vettly_live_ or vettly_test_). Get one free at https://vettly.dev
+
+commandFunction:
+  |-
+  (config) => ({ command: 'npx', args: ['-y', '@vettly/mcp'], env: { VETTLY_API_KEY: config.vettlyApiKey } })
